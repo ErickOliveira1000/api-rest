@@ -1,9 +1,8 @@
 from django.contrib import admin
-from myflix.models import User, Stream
+from myflix.models import user, stream, lista
 
-# Register your models here.
 
-class Users(admin.ModelAdmin):
+class users(admin.ModelAdmin):
     list_display = ('id', 'nome', 'email', 'cpf', 'data_nascimento', 'celular')
     list_display_links = ('id', 'nome')
     list_per_page = 20
@@ -11,11 +10,16 @@ class Users(admin.ModelAdmin):
 
 
 
-class Streams(admin.ModelAdmin):
+class streams(admin.ModelAdmin):
     list_display = ('id', 'codigo', 'descricao')
     list_display_links = ('id', 'codigo')
     search_fields = ['codigo']
 
+class listas(admin.ModelAdmin):
+    list_display = ('id', 'user', 'stream')
+    list_display_links = ('id',)
 
-admin.site.register(User, Users)
-admin.site.register(Stream, Streams)
+
+admin.site.register(user, users)
+admin.site.register(stream, streams)
+admin.site.register(lista, listas)

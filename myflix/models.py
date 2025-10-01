@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-class User(models.Model):
+class user(models.Model):
     nome = models.CharField(max_length = 100)
     email = models.EmailField(blank=False, max_length = 30)
     cpf = models.CharField(max_length = 11)
@@ -12,7 +12,7 @@ class User(models.Model):
         return self.nome
 
 
-class Stream(models.Model):
+class stream(models.Model):
     CATEGORIA = (
     ('F', 'Filme'),
     ('S', 'Série'),
@@ -24,3 +24,8 @@ class Stream(models.Model):
 
     def __str__(self):
         return self.codigo
+
+
+class lista(models.Model):
+    user = models.ForeignKey(user, on_delete=models.CASCADE)
+    stream = models.ForeignKey(stream, on_delete=models.CASCADE)
